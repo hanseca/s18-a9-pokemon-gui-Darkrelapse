@@ -12,34 +12,35 @@ public class PokeUIPanel extends JPanel {
    private JButton bag = new JButton("Backpack");
    private JTextArea textArea = new JTextArea("");
    private JTextArea sTextArea = new JTextArea("");
-   private JScrollPane scroll = new JScrollPane(sTextArea, 
-       JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
-          JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+   private JScrollPane scroll = new JScrollPane(sTextArea);
    private BorderLayout bl = new BorderLayout();
-   private GridLayout gl = new GridLayout(6, 6);
    private JPanel topPanel = new JPanel();
    private JPanel botPanel = new JPanel();
-   private JPanel centerPanel = new JPanel();
    private Pokemon p = new Bulbasaur();
    private boolean tempB;
    private PokeTree tree = new PokeTree();
+   private String tempS = new String("");
 
    public PokeUIPanel() {
       
-      setPreferredSize(new Dimension(1920, 1080));
+      scroll.setPreferredSize(new Dimension(400, 200));
+      scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+      scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+      setPreferredSize(new Dimension(1280, 720));
       textArea.setEditable(false);
+      sTextArea.setEditable(false);
       hunt.addActionListener(new GUIListener());
       pCatch.addActionListener(new GUIListener());
+      pDex.addActionListener(new GUIListener());
       setLayout(bl);
       add("North", topPanel);
       add("South", botPanel);
-      add("Center", centerPanel);
-      topPanel.setPreferredSize(new Dimension(480, 480));
+      topPanel.setPreferredSize(new Dimension(350, 200));
       topPanel.add(hunt);
       topPanel.add(pCatch);
       topPanel.add(textArea);
-      centerPanel.add(pDex);
-      centerPanel.add(bag);
+      botPanel.add(pDex);
+      botPanel.add(bag);
       botPanel.add(scroll);
    }
    
@@ -68,7 +69,8 @@ public class PokeUIPanel extends JPanel {
          
          if (event.getSource() == pDex) {
             
-            tree.printPokeTree();
+            tempS = tree.toString();
+            sTextArea.setText(tempS);
          }
       }
    }
