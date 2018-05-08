@@ -8,6 +8,8 @@ public class PokeGUI {
       
       frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       
+      frm.getContentPane().add(new PokeUIPanel());
+      
       frm.pack();
       frm.setVisible(true);
    }

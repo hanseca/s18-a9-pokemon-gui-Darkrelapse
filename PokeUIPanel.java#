@@ -1,0 +1,41 @@
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+
+public class PokeUIPanel extends JPanel {
+
+   private JButton hunt = new JButton("Hunt");
+   private JButton pCatch = new JButton("Catch");
+   private JTextArea textArea = new JTextArea("");
+   private JScrollPane scroll = new JScrollPane(textArea, 
+       JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+          JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+   private BorderLayout bl = new BorderLayout();
+   private GridLayout gl = new GridLayout(6, 6);
+   private JPanel topPanel = new JPanel(); 
+
+   public PokeUIPanel() {
+      
+      setPreferredSize(new Dimension(1920, 1080));
+      textArea.setEditable(false);
+      setLayout(bl);
+      add("North", topPanel);
+      topPanel.add(hunt);
+      topPanel.add(pCatch);
+      add(scroll);
+   }
+   
+   private class GUIListener implements ActionListener {
+   
+      public void actionPerformed(ActionEvent event) {
+      
+         if (event.getSource() == hunt) {
+            
+         }
+      }
+   }
+   
+   private Pokemon huntPoke() {
+      
+   }  
+}
