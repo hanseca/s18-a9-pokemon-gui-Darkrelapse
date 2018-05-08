@@ -8,29 +8,42 @@ public class PokeUIPanel extends JPanel {
 
    private JButton hunt = new JButton("Hunt");
    private JButton pCatch = new JButton("Catch");
+   private JButton pDex = new JButton("Pokdex");
+   private JButton bag = new JButton("Backpack");
    private JTextArea textArea = new JTextArea("");
-   private JScrollPane scroll = new JScrollPane(textArea, 
+   private JTextArea sTextArea = new JTextArea("");
+   private JScrollPane scroll = new JScrollPane(sTextArea, 
        JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
           JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
    private BorderLayout bl = new BorderLayout();
    private GridLayout gl = new GridLayout(6, 6);
-   private JPanel topPanel = new JPanel(); 
+   private JPanel topPanel = new JPanel();
+   private JPanel botPanel = new JPanel();
+   private JPanel centerPanel = new JPanel();
+   private Pokemon p = new Bulbasaur();
+   private boolean tempB;
+   private PokeTree tree = new PokeTree();
 
    public PokeUIPanel() {
       
       setPreferredSize(new Dimension(1920, 1080));
       textArea.setEditable(false);
       hunt.addActionListener(new GUIListener());
+      pCatch.addActionListener(new GUIListener());
       setLayout(bl);
       add("North", topPanel);
+      add("South", botPanel);
+      add("Center", centerPanel);
+      topPanel.setPreferredSize(new Dimension(480, 480));
       topPanel.add(hunt);
       topPanel.add(pCatch);
-      add(scroll);
+      topPanel.add(textArea);
+      centerPanel.add(pDex);
+      centerPanel.add(bag);
+      botPanel.add(scroll);
    }
    
    private class GUIListener implements ActionListener {
-   
-      Pokemon p = new Bulbasaur();
       
       public void actionPerformed(ActionEvent event) {
       
@@ -38,7 +51,39 @@ public class PokeUIPanel extends JPanel {
             
             p = huntPoke();
             textArea.setText("A " + p.getSpecies() + " appeared!");
+            
          }
+         
+         if (event.getSource() == pCatch) {
+            
+            tempB = catchPoke();
+            
+            if (tempB) {
+               textArea.setText("You have caught: " + p.toString());
+               tree.add(p);
+            } else {
+               textArea.setText(p.getSpecies() + " has escaped!");
+            }
+         }
+         
+         if (event.getSource() == pDex) {
+            
+            tree.printPokeTree();
+         }
+      }
+   }
+   
+   private boolean catchPoke() {
+      
+      Random ranG = new Random();
+      boolean tempB = true;
+      
+      tempB = ranG.nextBoolean();
+      
+      if (tempB) {
+         return tempB;
+      } else {
+         return false;
       }
    }
    
