@@ -1,8 +1,18 @@
 import javax.swing.JFrame;
 
+/**
+* Driver class for pokemon GUI.
+* @author Hansen Cabanero
+* @since 5/8/18
+*/
+
 public class PokeGUI {
    
-   public static void main (String [] args) {
+   /**
+   * Driver method for file.
+   * @param args Taking arguments into array
+   */
+   public static void main(String [] args) {
       
       JFrame frm = new JFrame("Pokemon GUI");
       

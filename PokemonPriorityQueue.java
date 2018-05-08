@@ -84,5 +84,17 @@ public class PokemonPriorityQueue {
          Pokemon tempS = ps.pop();
          System.out.println(tempS.toString());
       }
+   }  
+   
+   public static String recentList() {
+      
+      String tempS = "";
+      Stack <Pokemon> ps = new Stack<>();
+      
+      while (ps.size() > 0) {
+         Pokemon tempP = ps.pop();
+         tempS = tempP.toString();
+      }
+      return tempS;
    }
 }
